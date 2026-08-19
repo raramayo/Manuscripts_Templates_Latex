@@ -333,11 +333,11 @@ consolidated class. New manuscripts should use `MultiTargetManuscript`.
 
 ## Repository
 
-<https://github.com/raramayo/Manuscripts_Templates_Latex_Priv_Devo_Repo>
+<https://github.com/raramayo/Manuscripts_Templates_Latex>
 
 ## Issues
 
-<https://github.com/raramayo/Manuscripts_Templates_Latex_Priv_Devo_Repo/issues>
+<https://github.com/raramayo/Manuscripts_Templates_Latex/issues>
 
 ## License
 
