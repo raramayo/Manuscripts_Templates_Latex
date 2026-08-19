@@ -1,0 +1,14 @@
+%% Source-native supporting figure for the toy manuscript.
+%% This file intentionally uses only core LaTeX constructs so every target
+%% profile consumes the exact same portable figure source.
+\setlength{\fboxsep}{7pt}%
+\begin{tabular}{c@{\quad$\longrightarrow$\quad}c@{\quad$\longrightarrow$\quad}c}
+  \fbox{\parbox[c][1.35cm][c]{0.19\textwidth}{\centering
+    One manuscript\\One bibliography}}
+  &
+  \fbox{\parbox[c][1.35cm][c]{0.19\textwidth}{\centering
+    Target selector\\Shared class}}
+  &
+  \fbox{\parbox[c][1.35cm][c]{0.27\textwidth}{\centering
+    arXiv $\vert$ bioRxiv $\vert$ Zenodo\\Neutral (no label)}}
+\end{tabular}

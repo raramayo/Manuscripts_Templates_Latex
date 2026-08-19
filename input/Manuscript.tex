@@ -1,0 +1,172 @@
+%% Multi-target toy manuscript stored in the author-facing input directory.
+%%
+%% build.sh defines \ManuscriptTarget before reading this file. The
+%% \providecommand keeps neutral as the default for direct LaTeX compilation
+%% while allowing that command-line selection to take precedence.
+\providecommand{\ManuscriptTarget}{neutral}
+\documentclass[times,twoside]{_Templates/MultiTargetManuscript}
+
+\usepackage{url}
+% Keep the short fixture's final two-column page visually balanced.
+% Remove this package if a real manuscript uses another column-balancing tool.
+\usepackage{flushend}
+
+% Optional footer overrides (independent of the selected target):
+% \journalname{Custom repository or journal}
+% \nojournalname
+
+% Give the surname of the lead author for the running footer.
+\leadauthor{Example}
+
+\begin{document}
+\raggedbottom
+\setlength{\emergencystretch}{2em}
+
+\title{A Reproducible Toy Study of Multi-Target Manuscript Generation}
+\shorttitle{Multi-Target Manuscripts}
+
+% Each author receives a separate \author command so authblk can associate
+% names and affiliations correctly. \Letter marks a corresponding author.
+\author[1]{Avery Example}
+\author[1]{Blake Sample}
+\author[1,\Letter]{Casey Demonstration}
+\affil[1]{Department of Reproducible Examples, Example University, Sample City, USA}
+
+\maketitle
+
+\begin{abstract}
+Scientific manuscripts are often copied into separate directory trees when only
+repository branding differs. That duplication makes later corrections difficult
+to propagate and encourages source drift. We present a toy manuscript that uses
+one LaTeX class, one bibliography style, and one content source to create
+bioRxiv-, arXiv-, Zenodo-, and neutral-profile PDFs. The profiles change only the
+footer label; manuscript content, typography, authorship, citations, and figure
+sources remain identical. This small example is intended as a development
+fixture and as a starting point for a real manuscript, not as evidence of
+compliance with every repository's current submission policy.
+\end{abstract}
+
+\begin{keywords}
+reproducibility | LaTeX | preprints | document automation | open science
+\end{keywords}
+
+\begin{corrauthor}
+casey.demonstration\at example.edu
+\end{corrauthor}
+
+\section*{Introduction}
+
+Reproducible research depends on preserving both the scientific record and the
+process that produced it. Shared conventions for data, metadata, and software
+improve the ability of other researchers to inspect and reuse scholarly outputs
+\cite{wilkinson2016fair}. Manuscript production deserves the same care. When an
+article is copied once for each intended repository, prose and references may be
+corrected in one copy but not another. The resulting files look related while
+quietly representing different states of the work.
+
+The template tested here treats the repository name as configuration rather than
+content. A target profile is selected at build time, while the manuscript is read
+from the same \texttt{input/Manuscript.tex} file. The target may also be selected with
+a native class option for authors who compile interactively. This separation
+keeps repository presentation at the edge of the system and keeps scientific
+content in one authoritative source.
+
+\section*{Template design}
+
+The design has three components. First, the manuscript contains all authors,
+affiliations, narrative text, captions, and citations. Second, the
+\texttt{MultiTargetManuscript} class contains shared typography and four small
+target profiles. Third, the build helper passes the requested target to LaTeX
+before the class is loaded. The bibliography and source-native figure are shared
+by every build (Fig.~\ref{fig:workflow}).
+
+\begin{figure*}[!t]
+  \centering
+  \input{input/Figures/toy-workflow.tex}
+  \caption{One source tree generates four presentation profiles. The target
+  selector changes only the repository label in the footer. The neutral profile
+  suppresses that field and its adjacent separator, so it does not leave an
+  empty visual artifact.}
+  \label{fig:workflow}
+\end{figure*}
+
+The four targets are arXiv, bioRxiv, Zenodo, and neutral. The first three values
+produce a visible footer label. The neutral value removes the label entirely.
+Existing manual controls are retained:
+\texttt{\string\journalname\{...\}} supplies a custom label, and
+\texttt{\string\nojournalname} suppresses it. These controls make the template
+usable for journal drafts without creating another class file.
+
+\section*{Validation strategy}
+
+Document automation should be tested at more than one level. A successful LaTeX
+exit status establishes that the source can be processed, but it does not show
+that the correct profile was selected or that the footer is legible. The example
+therefore supports four complementary checks:
+
+\begin{enumerate}
+  \item compile every supported target from a clean auxiliary directory;
+  \item inspect logs for undefined citations, references, and fatal errors;
+  \item extract text from each PDF and confirm the expected label behavior; and
+  \item render the PDF pages and inspect typography, spacing, and clipping.
+\end{enumerate}
+
+This layered approach follows the broader principle that computational outputs
+should be accessible, inspectable, and reproducible \cite{mesirov2010accessible}.
+It also distinguishes a template fixture from a repository submission test. The
+fixture proves that target selection changes the local output as designed. It
+does not prove that an external service will accept a future upload, because
+external requirements and supported TeX environments can change.
+
+\section*{Illustrative result}
+
+All four outputs are expected to have identical pagination and body text. The
+arXiv build displays a stylized arXiv label; the bioRxiv build preserves the
+stylized bioRxiv mark from the source template; and the Zenodo build displays a
+plain Zenodo label. The neutral build retains the author, date, short title, and
+page information but contains no repository name. Conditional separator logic
+prevents a doubled bar or unexplained gap when the label is absent.
+
+Because the target selection occurs outside the manuscript content, a correction
+to a paragraph, reference, author list, or figure is automatically present in the
+next build of every profile. This is the principal maintenance advantage of the
+consolidated layout. The source tree is also small enough to package for an
+archive or transfer to another LaTeX environment without determining which of
+several manuscript copies is authoritative.
+
+\section*{Limitations and use}
+
+Repository labels are presentational metadata. They do not imply endorsement by
+arXiv, bioRxiv, or Zenodo, and they do not replace each service's submission form
+or metadata requirements. Zenodo is a general-purpose repository rather than a
+journal with a mandatory article class, so its profile is deliberately a label
+on the shared layout. Authors should reserve or add a DOI separately when their
+deposit workflow calls for one.
+
+For a real project, replace the toy prose, authorship, bibliography, and figure
+while retaining the directory layout and build interface. Authors can add
+ordinary LaTeX packages in the manuscript preamble. Changes to page geometry,
+title construction, bibliography formatting, or footer policy belong in the
+class and should be documented in its dated revision notes.
+
+\section*{Conclusion}
+
+A target selector is sufficient to replace three nearly identical manuscript
+trees with one maintainable source. The resulting repository exposes the choice
+clearly, keeps supporting files synchronized, and allows neutral or custom output
+without another fork of the class. The example is intentionally small so that
+future template changes can be compiled and visually checked quickly.
+
+\begin{acknowledgements}
+This manuscript is a fictional development fixture. Names, institutions, and
+email addresses are illustrative and do not describe real contributors.
+\end{acknowledgements}
+
+\section*{Bibliography}
+\begingroup
+\setlength{\emergencystretch}{5em}
+\sloppy
+\bibliography{input/References}
+\endgroup
+
+\end{document}

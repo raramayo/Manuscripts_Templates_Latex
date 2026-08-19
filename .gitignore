@@ -1,0 +1,21 @@
+# Project-root .gitignore.
+# MacOS
+.DS_Store
+._*
+
+# Editor/IDE
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# Temporary files
+*.tmp
+*.bak
+
+# Python environments and bytecode
+__pycache__/
+*.py[cod]
+.venv/
+venv/
