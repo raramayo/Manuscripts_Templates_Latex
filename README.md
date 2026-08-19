@@ -1,4 +1,5 @@
-<!-- [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10905863.svg)](https://doi.org/10.5281/zenodo.10905863) -->
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10905863.svg)](https://doi.org/10.5281/zenodo.22018962)
+
 # Manuscripts_Templates_Latex
 ![alt text](https://github.com/raramayo/Manuscripts_Templates_Latex/blob/main/images/Manuscripts_Templates_Latex_Logo.png)
 
