@@ -1,4 +1,4 @@
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22018962.svg)](https://doi.org/10.5281/zenodo.22018962)
+![alt text](https://github.com/raramayo/Manuscripts_Templates_Latex_Priv_Devo_Repo/blob/main/images/zenodo.22018962.svg)
 
 # Manuscripts_Templates_Latex
 ![alt text](https://github.com/raramayo/Manuscripts_Templates_Latex/blob/main/images/Manuscripts_Templates_Latex_Logo.png)
